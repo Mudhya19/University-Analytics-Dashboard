@@ -135,6 +135,7 @@ University-Analytics-Dashboard/
 Untuk informasi lebih lengkap tentang evaluasi kritis dashboard existing (Montana University System), silakan merujuk ke laporan analisis lengkap:
 
 - [Laporan Analisis Dashboard MUS](docs/Laporan%20Analisis%20Dashboard%20MUS.pdf)
+- [Streamlit Web App](https://university-analytics-dashboard.streamlit.app/)
 
 Laporan ini berisi analisis mendalam tentang:
 
