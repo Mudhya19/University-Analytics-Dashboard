@@ -141,18 +141,18 @@ if tahun_angkatan_columns:
 
 # Display tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "1. Pertanyaan S.M.A.R.T & Pengolahan Data",
-    "2. Ringkasan Statistik Deskriptif", 
-    "3. Analisis Eksplorasi Data (Deskriptif)",
-    "4. Analisis Eksplorasi Data (Lanjutan)",
-    "5. Wawasan & Kesimpulan"
+    "1. S.M.A.R.T Question & Data Wrangling",
+    "2. Ringkasan Statistik Deskriptif",
+    "3. Exploratory Data Analysis (Deskriptif)",
+    "4. Exploratory Data Analysis (Lanjutan)",
+    "5. Insight & Kesimpulan"
 ])
 
 with tab1:
-    st.markdown('<h2 class="section-header">1. Pertanyaan S.M.A.R.T & Pengolahan Data</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-header">1. S.M.A.R.T Question & Data Wrangling</h2>', unsafe_allow_html=True)
     
     # S.M.A.R.T Question Section
-    st.subheader("🎯 Pertanyaan S.M.A.R.T")
+    st.subheader("🎯 S.M.A.R.T Question")
     
     smart_questions = [
         "**Specific**: Apa yang menjadi faktor utama yang mempengaruhi tingkat kelulusan mahasiswa?",
@@ -168,27 +168,27 @@ with tab1:
     st.markdown("---")
     
     # Data Wrangling Section
-    st.subheader("🧩 Pengolahan Data")
+    st.subheader("🧩 Data Wrangling")
     
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("**Pengumpulan Data**")
-        st.metric(label="Total Rekaman", value=f"{len(df):,}")
-        st.metric(label="Total Kolom", value=df.shape[1])
+        st.markdown("**Data Collection**")
+        st.metric(label="Total Records", value=f"{len(df):,}")
+        st.metric(label="Total Columns", value=df.shape[1])
     
     with col2:
-        st.markdown("**Penilaian Data**")
+        st.markdown("**Data Assessment**")
         missing_values = df.isnull().sum().sum()
-        st.metric(label="Nilai Hilang", value=f"{missing_values:,}")
+        st.metric(label="Missing Values", value=f"{missing_values:,}")
         duplicate_rows = df.duplicated().sum()
-        st.metric(label="Baris Duplikat", value=f"{duplicate_rows:,}")
+        st.metric(label="Duplicate Rows", value=f"{duplicate_rows:,}")
     
     with col3:
-        st.markdown("**Pembersihan Data**")
-        st.write(f"Kolom numerik: {len(numeric_columns)}")
-        st.write(f"Kolom kategorikal: {len(categorical_columns)}")
-    
+        st.markdown("**Data Cleaning**")
+        st.write(f"Numeric columns: {len(numeric_columns)}")
+        st.write(f"Categorical columns: {len(categorical_columns)}")
+
     st.markdown("---")
     
     # Detailed Data Assessment
@@ -271,20 +271,20 @@ with tab1:
 with tab2:
     st.markdown('<h2 class="section-header">2. Ringkasan Statistik Deskriptif</h2>', unsafe_allow_html=True)
     
-    st.subheader("📊 Ringkasan Statistik")
+    st.subheader("📊 Descriptive Statistics Summary")
     
     # Overall summary
-    st.write("**Ringkasan Dataset Secara Keseluruhan:**")
+    st.write("**Overall Dataset Summary:**")
     st.dataframe(df.describe(include='all').style.background_gradient(cmap='RdPu'))
     
     st.markdown("---")
     
     # Numeric columns summary
     if numeric_columns:
-        st.subheader("📈 Ringkasan Variabel Numerik")
+        st.subheader("📈 Numeric Variables Summary")
         
         # Select specific numeric columns for detailed analysis
-        selected_num_cols = st.multiselect("Pilih kolom numerik untuk dianalisis:", numeric_columns, default=numeric_columns[:3] if len(numeric_columns) >= 3 else numeric_columns)
+        selected_num_cols = st.multiselect("Select numeric columns for analysis:", numeric_columns, default=numeric_columns[:3] if len(numeric_columns) >= 3 else numeric_columns)
         
         for col in selected_num_cols:
             st.write(f"**{col}**")
@@ -299,8 +299,8 @@ with tab2:
             max_val = df[col].max()
             
             col_stats = pd.DataFrame({
-                'Statistik': ['Jumlah', 'Rata-rata', 'Std Dev', 'Min', '25%', 'Median', '75%', 'Max'],
-                'Nilai': [
+                'Statistics': ['Count', 'Mean', 'Std Dev', 'Min', '25%', 'Median', '75%', 'Max'],
+                'Value': [
                     count_val,
                     round(float(mean_val) if pd.notna(mean_val) else 0, 2),
                     round(float(std_val) if pd.notna(std_val) else 0, 2),
@@ -316,7 +316,7 @@ with tab2:
             # Distribution plot
             fig, ax = plt.subplots(figsize=(8, 4))
             sns.histplot(data=df, x=col, kde=True, ax=ax)
-            ax.set_title(f'Distribusi {col}')
+            ax.set_title(f'Distribution of {col}')
             st.pyplot(fig)
             plt.close()
     
@@ -324,10 +324,10 @@ with tab2:
     
     # Categorical columns summary
     if categorical_columns:
-        st.subheader("📋 Ringkasan Variabel Kategorikal")
+        st.subheader("📋 Categorical Variables Summary")
         
         # Select specific categorical columns for detailed analysis
-        selected_cat_cols = st.multiselect("Pilih kolom kategorikal untuk dianalisis:", categorical_columns, default=categorical_columns[:3] if len(categorical_columns) >= 3 else categorical_columns)
+        selected_cat_cols = st.multiselect("Select categorical columns for analysis:", categorical_columns, default=categorical_columns[:3] if len(categorical_columns) >= 3 else categorical_columns)
         
         for col in selected_cat_cols:
             st.write(f"**{col}**")
@@ -338,15 +338,15 @@ with tab2:
             col1, col2 = st.columns(2)
             
             with col1:
-                st.metric(label="Nilai Unik", value=unique_count)
-                st.write("10 Kategori Teratas:")
+                st.metric(label="Unique Values", value=unique_count)
+                st.write("Top 10 Categories:")
                 st.dataframe(value_counts.head(10))
             
             with col2:
                 # Bar chart for categorical data
                 fig, ax = plt.subplots(figsize=(8, 5))
                 value_counts.head(10).plot(kind='bar', ax=ax)
-                ax.set_title(f'10 Kategori Teratas di {col}')
+                ax.set_title(f'Top 10 Categories in {col}')
                 ax.tick_params(axis='x', rotation=45)
                 st.pyplot(fig)
                 plt.close()
@@ -355,50 +355,50 @@ with tab2:
     
     # Correlation analysis
     if len(numeric_columns) > 1:
-        st.subheader("🔗 Analisis Korelasi")
-        corr_method = st.selectbox("Pilih metode korelasi:", ["Pearson", "Spearman"])
+        st.subheader("🔗 Correlation Analysis")
+        corr_method = st.selectbox("Select correlation method:", ["Pearson", "Spearman"])
         
         method = 'pearson' if corr_method == "Pearson" else 'spearman'
         correlation_matrix = df[numeric_columns].corr(method=method)
         
         # Heatmap
         fig, ax = plt.subplots(figsize=(10, 8))
-        sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0, 
+        sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', center=0,
                     square=True, fmt='.2f', ax=ax)
-        ax.set_title(f'Matriks Korelasi ({corr_method})')
+        ax.set_title(f'Correlation Matrix ({corr_method})')
         st.pyplot(fig)
         plt.close()
 
 with tab3:
-    st.markdown('<h2 class="section-header">3. Analisis Eksplorasi Data (Deskriptif)</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-header">3. Exploratory Data Analysis (Deskriptif)</h2>', unsafe_allow_html=True)
     
-    st.subheader("🔍 Analisis Univariat")
+    st.subheader("🔍 Univariate Analysis")
     
     # Select variable for univariate analysis
-    analysis_col = st.selectbox("Pilih variabel untuk analisis univariat:", numeric_columns + categorical_columns)
+    analysis_col = st.selectbox("Select variable for univariate analysis:", numeric_columns + categorical_columns)
     
     if analysis_col in numeric_columns:
         # Numerical variable analysis
         col1, col2 = st.columns(2)
         
         with col1:
-            st.write(f"**Distribusi {analysis_col}**")
+            st.write(f"**Distribution of {analysis_col}**")
             fig, ax = plt.subplots(figsize=(8, 5))
             sns.histplot(data=df, x=analysis_col, kde=True, ax=ax)
-            ax.set_title(f'Histogram {analysis_col}')
+            ax.set_title(f'Histogram of {analysis_col}')
             st.pyplot(fig)
             plt.close()
         
         with col2:
-            st.write(f"**Statistik Deskriptif**")
+            st.write(f"**Descriptive Statistics**")
             # Calculate basic statistics
             mean_val = df[analysis_col].mean()
             median_val = df[analysis_col].median()
             std_val = df[analysis_col].std()
             
             stats_df = pd.DataFrame({
-                'Ukuran': ['Rata-rata', 'Median', 'Std Dev'],
-                'Nilai': [
+                'Measure': ['Mean', 'Median', 'Std Dev'],
+                'Value': [
                     round(float(mean_val) if pd.notna(mean_val) else 0, 2),
                     round(float(median_val) if pd.notna(median_val) else 0, 2),
                     round(float(std_val) if pd.notna(std_val) else 0, 2)
@@ -408,33 +408,33 @@ with tab3:
     
     elif analysis_col in categorical_columns:
         # Categorical variable analysis
-        st.write(f"**Distribusi {analysis_col}**")
+        st.write(f"**Distribution of {analysis_col}**")
         value_counts = df[analysis_col].value_counts()
         
         # Bar chart
         fig, ax = plt.subplots(figsize=(10, 5))
         value_counts.plot(kind='bar', ax=ax)
-        ax.set_title(f'Grafik Batang {analysis_col}')
+        ax.set_title(f'Bar Chart of {analysis_col}')
         ax.tick_params(axis='x', rotation=45)
         st.pyplot(fig)
         plt.close()
         
         # Frequency table
-        st.write(f"**Tabel Frekuensi untuk {analysis_col}:**")
+        st.write(f"**Frequency Table for {analysis_col}:**")
         freq_table = pd.DataFrame({
-            'Kategori': value_counts.index,
-            'Jumlah': value_counts.values,
-            'Persentase': [round((count / len(df)) * 10, 2) for count in value_counts.values]
+            'Category': value_counts.index,
+            'Count': value_counts.values,
+            'Percentage': [round((count / len(df)) * 100, 2) for count in value_counts.values]
         })
         st.dataframe(freq_table)
     
     st.markdown("---")
     
-    st.subheader("🔗 Analisis Bivariat")
+    st.subheader("🔗 Bivariate Analysis")
     
     # Select variables for bivariate analysis
-    var1 = st.selectbox("Pilih variabel pertama:", numeric_columns + categorical_columns, key='var1')
-    var2 = st.selectbox("Pilih variabel kedua:", numeric_columns + categorical_columns, key='var2')
+    var1 = st.selectbox("Select first variable:", numeric_columns + categorical_columns, key='var1')
+    var2 = st.selectbox("Select second variable:", numeric_columns + categorical_columns, key='var2')
     
     if var1 != var2:
         if var1 in numeric_columns and var2 in numeric_columns:
@@ -442,9 +442,9 @@ with tab3:
             col1, col2 = st.columns(2)
             
             with col1:
-                st.write(f"**Korelasi antara {var1} dan {var2}:**")
+                st.write(f"**Correlation between {var1} and {var2}:**")
                 correlation = df[var1].corr(df[var2])
-                st.metric(label="Koefisien Korelasi", value=round(correlation, 3))
+                st.metric(label="Correlation Coefficient", value=round(correlation, 3))
             
             with col2:
                 st.write(f"**Scatter Plot {var1} vs {var2}**")
@@ -461,27 +461,27 @@ with tab3:
             num_var = var1 if var1 in numeric_columns else var2
             cat_var = var1 if var1 in categorical_columns else var2
             
-            st.write(f"**Distribusi {num_var} berdasarkan {cat_var}**")
+            st.write(f"**Distribution of {num_var} by {cat_var}**")
             fig, ax = plt.subplots(figsize=(10, 5))
             sns.boxplot(data=df, x=cat_var, y=num_var, ax=ax)
             ax.tick_params(axis='x', rotation=45)
-            ax.set_title(f'{num_var} berdasarkan {cat_var}')
+            ax.set_title(f'{num_var} by {cat_var}')
             st.pyplot(fig)
             plt.close()
             
             # Grouped statistics
-            st.write(f"**Statistik {num_var} berdasarkan {cat_var}:**")
+            st.write(f"**Statistics of {num_var} by {cat_var}:**")
             grouped_stats = df.groupby(cat_var)[num_var].agg(['count', 'mean', 'std']).round(2)
             st.dataframe(grouped_stats)
 
 with tab4:
-    st.markdown('<h2 class="section-header">4. Analisis Eksplorasi Data (Lanjutan)</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-header">4. Exploratory Data Analysis (Lanjutan)</h2>', unsafe_allow_html=True)
     
-    st.subheader("🔍 Deteksi Outlier")
+    st.subheader("🔍 Outlier Detection")
     
     # Outlier Detection
     if numeric_columns:
-        numeric_col_for_outliers = st.selectbox("Pilih kolom numerik untuk deteksi outlier:", numeric_columns)
+        numeric_col_for_outliers = st.selectbox("Select numeric column for outlier detection:", numeric_columns)
         
         Q1 = df[numeric_col_for_outliers].quantile(0.25)
         Q3 = df[numeric_col_for_outliers].quantile(0.75)
@@ -493,49 +493,49 @@ with tab4:
         outliers = df[(df[numeric_col_for_outliers] < lower_bound) |
                       (df[numeric_col_for_outliers] > upper_bound)]
         
-        st.write(f"Outlier terdeteksi di {numeric_col_for_outliers}: {len(outliers)} rekaman")
-        st.write(f"Batas bawah: {lower_bound:.2f}, Batas atas: {upper_bound:.2f}")
+        st.write(f"Outliers detected in {numeric_col_for_outliers}: {len(outliers)} records")
+        st.write(f"Lower bound: {lower_bound:.2f}, Upper bound: {upper_bound:.2f}")
         
         if not outliers.empty:
             fig, ax = plt.subplots(figsize=(8, 5))
             sns.boxplot(y=df[numeric_col_for_outliers], ax=ax)
-            ax.set_title(f'Box Plot menunjukkan Outlier di {numeric_col_for_outliers}')
+            ax.set_title(f'Box Plot showing Outliers in {numeric_col_for_outliers}')
             st.pyplot(fig)
             plt.close()
     
     st.markdown("---")
     
-    st.subheader("📈 Tren Data")
+    st.subheader("📈 Data Trends")
     
     # Time series analysis if date columns exist
     if date_columns and numeric_columns:
-        time_col = st.selectbox("Pilih kolom tanggal untuk analisis tren:", date_columns)
-        metric_col = st.selectbox("Pilih metrik untuk analisis tren:", numeric_columns)
+        time_col = st.selectbox("Select date column for trend analysis:", date_columns)
+        metric_col = st.selectbox("Select metric for trend analysis:", numeric_columns)
         
         # Group data by selected time period
         df_time = df.copy()
         df_time[time_col] = pd.to_datetime(df_time[time_col])
-        df_time['year_month'] = df_time[time_col].dt.strftime('%Y-%m')
+        df_time['year_month'] = df_time[time_col].apply(lambda x: x.strftime('%Y-%m'))
         
         if time_col and metric_col:  # Pastikan kedua variabel tidak None
             try:
                 # Group data by selected time period
                 df_time = df.copy()
                 df_time[time_col] = pd.to_datetime(df_time[time_col])
-                df_time['year_month'] = df_time[time_col].dt.strftime('%Y-%m')
+                df_time['year_month'] = df_time[time_col].apply(lambda x: x.strftime('%Y-%m'))
                 
                 trend_data = df_time.groupby('year_month')[metric_col].mean().reset_index()
                 
                 fig, ax = plt.subplots(figsize=(12, 6))
                 ax.plot(trend_data['year_month'], trend_data[metric_col], marker='o', linewidth=2, markersize=4)
-                ax.set_title(f'Tren Rata-rata {metric_col} Seiring Waktu')
-                ax.set_xlabel('Periode Waktu')
-                ax.set_ylabel(f'Rata-rata {metric_col}')
+                ax.set_title(f'Average {metric_col} Trend Over Time')
+                ax.set_xlabel('Time Period')
+                ax.set_ylabel(f'Average {metric_col}')
                 plt.xticks(rotation=45)
                 st.pyplot(fig)
                 plt.close()
             except:
-                st.warning("Tidak dapat membuat grafik tren karena masalah dengan kolom tanggal atau metrik.")
+                st.warning("Cannot create trend chart due to issues with date column or metric.")
 
 with tab5:
     st.markdown('<h2 class="section-header">5. Wawasan & Kesimpulan</h2>', unsafe_allow_html=True)
