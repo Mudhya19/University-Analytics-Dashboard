@@ -415,9 +415,6 @@ with tab3:
         "Line Chart - Tren Mahasiswa per Tahun Angkatan",
         "Pie Chart - Proporsi Mahasiswa berdasarkan Gender atau Status",
         "Histogram - Distribusi IPK Mahasiswa",
-        "Scatter Plot - Hubungan antara IPK dan Nilai Ujian",
-        "Box Plot - Distribusi IPK per Fakultas/Jurusan",
-        "Heatmap - Korelasi Antar Variabel Numerik"
     ]
     
     selected_viz = st.multiselect("Pilih Jenis Visualisasi", viz_options, default=viz_options[:4])
