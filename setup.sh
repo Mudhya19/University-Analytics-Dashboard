@@ -198,62 +198,62 @@ print_header "TAHAP 4: Install Dependencies"
 # Buat requirements.txt
 cat > requirements.txt << 'EOF'
 # Dashboard & Web Framework
-streamlit==1.28.1
-dash==2.14.1
-plotly==5.18.0
-panel==1.3.0
+streamlit>=1.28.1
+dash>=2.14.1
+plotly>=5.18.0
+panel>=1.3.0
 
 # Data Processing
-pandas==2.1.1
-numpy==1.26.2
-scipy==1.11.3
+pandas>=2.2.0
+numpy>=1.26.2
+scipy>=1.11.3
 
 # Database
-sqlalchemy==2.0.23
-sqlite3-python==1.0.0
-pymongo==4.6.0
+sqlalchemy>=2.0.23
+# Removed sqlite3-python as it's not a valid package; sqlite3 is built into Python
+pymongo>=4.6.0
 
 # Data Visualization
-matplotlib==3.8.1
-seaborn==0.13.0
-altair==5.1.2
-folium==0.14.0
+matplotlib>=3.8.1
+seaborn>=0.13.0
+altair>=5.1.2
+folium>=0.14.0
 
 # Machine Learning & Analytics
-scikit-learn==1.3.2
-statsmodels==0.14.0
+scikit-learn>=1.3.2
+statsmodels>=0.14.0
 
 # Data Loading & Sources
-kaggle==1.5.13
-requests==2.31.0
+kaggle>=1.5.13
+requests>=2.31.0
 
 # Utilities
-python-dotenv==1.0.0
-colorama==0.4.6
-tqdm==4.66.1
+python-dotenv>=1.0
+colorama>=0.4.6
+tqdm>=4.66.1
 
 # Testing
-pytest==7.4.3
-pytest-cov==4.1.0
+pytest>=7.4.3
+pytest-cov>=4.1.0
 
 # Code Quality
-black==23.11.0
-flake8==6.1.0
-pylint==3.0.2
+black>=23.11.0
+flake8>=6.1.0
+pylint>=3.0.2
 
 # Jupyter & Notebooks
-jupyter==1.0.0
-ipython==8.17.2
-ipykernel==6.26.0
-notebook==7.0.6
+jupyter>=1.0.0
+ipython>=8.17.2
+ipykernel>=6.26.0
+notebook>=7.0.6
 
 # Documentation
-sphinx==7.2.6
-sphinx-rtd-theme==2.0.0
+sphinx>=7.2.6
+sphinx-rtd-theme>=2.0.0
 
 # Development
-python-dateutil==2.8.2
-pytz==2023.3
+python-dateutil>=2.8.2
+pytz>=2023.3
 EOF
 
 print_success "requirements.txt dibuat"
