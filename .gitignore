@@ -27,8 +27,9 @@ cache/
 *.sqlite3
 
 # Data files
-database/data/*.csv
 database/data/*.xlsx
+# Allow specific dataset files needed for deployment
+!database/data/mahasiswa_simulasi.csv
 
 # Environment variables
 .env

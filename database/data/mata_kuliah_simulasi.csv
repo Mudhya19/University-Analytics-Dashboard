@@ -1,0 +1,152 @@
+kode_mk,nama_mk,sks,prodi
+MK001,Mata Kuliah 1,3.0,Biologi
+MK002,Mata Kuliah 2,3.0,Pendidikan Bahasa Inggris
+MK003,Mata Kuliah 3,3.0,Ilmu Komunikasi
+MK004,Mata Kuliah 4,3.0,Psikologi
+MK005,Mata Kuliah 5,3.0,Psikologi
+MK006,Mata Kuliah 6,2.0,Kedokteran
+MK007,Mata Kuliah 7,3.0,Farmasi
+MK008,Mata Kuliah 8,3.0,Pendidikan Guru PAUD
+MK009,Mata Kuliah 9,3.0,Pendidikan Agama Islam
+MK010,Mata Kuliah 10,3.0,Profesi Apoteker
+MK011,,3.0,Farmasi
+MK012,Mata Kuliah 12,3.0,Sastra Arab
+MK013,Mata Kuliah 13,3.0,
+MK014,Mata Kuliah 14,2.0,Farmasi
+MK015,Mata Kuliah 15,3.0,Komunikasi dan Penyiaran Islam
+MK016,Mata Kuliah 16,2.0,Fisika
+MK017,Mata Kuliah 17,3.0,Manajemen
+MK018,Mata Kuliah 18,3.0,Kimia
+MK019,Mata Kuliah 19,2.0,Teknik Informatika
+MK020,Mata Kuliah 20,3.0,Teknik Kimia
+MK021,Mata Kuliah 21,2.0,Pendidikan Bahasa Inggris
+MK022,Mata Kuliah 22,,Ilmu Komunikasi
+MK023,Mata Kuliah 23,3.0,Pendidikan Guru PAUD
+MK024,Mata Kuliah 24,3.0,Sastra Inggris
+MK025,Mata Kuliah 25,2.0,Pendidikan Guru SD
+MK026,Mata Kuliah 26,3.0,Profesi Apoteker
+MK027,Mata Kuliah 27,3.0,Kimia
+MK028,Mata Kuliah 28,3.0,Sastra Inggris
+MK029,Mata Kuliah 29,3.0,Pendidikan Bahasa Inggris
+MK030,Mata Kuliah 30,3.0,Pendidikan Bahasa Inggris
+MK031,Mata Kuliah 31,3.0,Ekonomi Syariah
+MK032,Mata Kuliah 32,3.0,Perbankan Syariah
+MK033,Mata Kuliah 33,3.0,
+MK034,Mata Kuliah 34,3.0,Sastra Arab
+MK035,Mata Kuliah 35,3.0,Ilmu Al-Quran dan Tafsir
+MK036,Mata Kuliah 36,3.0,Sastra Inggris
+MK037,Mata Kuliah 37,3.0,Ilmu Perpustakaan
+MK038,Mata Kuliah 38,2.0,Pendidikan Guru SD
+MK039,Mata Kuliah 39,3.0,Matematika
+MK040,Mata Kuliah 40,3.0,Farmasi
+MK041,Mata Kuliah 41,3.0,Pendidikan Guru PAUD
+MK042,Mata Kuliah 42,2.0,Pendidikan Bahasa Inggris
+MK043,Mata Kuliah 43,2.0,Teknik Sipil
+MK044,Mata Kuliah 44,3.0,Farmasi
+MK045,Mata Kuliah 45,2.0,Teknik Kimia
+MK046,Mata Kuliah 46,3.0,Pendidikan Bahasa Inggris
+MK047,Mata Kuliah 47,3.0,Sastra Inggris
+MK048,Mata Kuliah 48,2.0,Teknik Mesin
+MK049,Mata Kuliah 49,3.0,Sejarah Kebudayaan Islam
+MK050,Mata Kuliah 50,2.0,Arsitektur
+MK051,Mata Kuliah 51,3.0,Sastra Inggris
+MK052,Mata Kuliah 52,2.0,Kedokteran
+MK053,Mata Kuliah 53,3.0,Sastra Inggris
+MK054,Mata Kuliah 54,3.0,Bisnis Digital
+MK055,Mata Kuliah 55,2.0,Bisnis Digital
+MK056,Mata Kuliah 56,,Bisnis Digital
+MK057,Mata Kuliah 57,2.0,
+MK058,Mata Kuliah 58,3.0,Komunikasi dan Penyiaran Islam
+MK059,Mata Kuliah 59,,Fisika
+MK060,Mata Kuliah 60,3.0,Ilmu Perpustakaan
+MK061,Mata Kuliah 61,3.0,Profesi Apoteker
+MK062,Mata Kuliah 62,2.0,Sastra Arab
+MK063,Mata Kuliah 63,2.0,Komunikasi dan Penyiaran Islam
+MK064,Mata Kuliah 64,3.0,Perbankan Syariah
+MK065,Mata Kuliah 65,2.0,Farmasi
+MK066,Mata Kuliah 66,2.0,Perbankan Syariah
+MK067,Mata Kuliah 67,3.0,Teknik Sipil
+MK068,Mata Kuliah 68,2.0,Teknik Informatika
+MK069,Mata Kuliah 69,3.0,Pendidikan Agama Islam
+MK070,Mata Kuliah 70,3.0,Matematika
+MK071, Mata Kuliah 71 ,3.0,Manajemen
+MK072,Mata Kuliah 72,2.0,
+MK073,,2.0,Fisika
+MK074,Mata Kuliah 74,2.0,Kimia
+MK075,Mata Kuliah 75,3.0,Sastra Inggris
+MK076,Mata Kuliah 76,3.0,Ekonomi Syariah
+MK077,Mata Kuliah 77,3.0,Perbankan Syariah
+MK078,Mata Kuliah 78,2.0,
+MK079,Mata Kuliah 79,3.0,Teknik Mesin
+MK080,Mata Kuliah 80,3.0,Sejarah Kebudayaan Islam
+MK081,Mata Kuliah 81,2.0,Pendidikan Bahasa Inggris
+MK082,Mata Kuliah 82,3.0,Sastra Inggris
+MK083,Mata Kuliah 83,3.0,Hubungan Internasional
+MK084,Mata Kuliah 84,2.0,Ilmu Hukum
+MK085,Mata Kuliah 85,2.0,Komunikasi dan Penyiaran Islam
+MK086,Mata Kuliah 86,2.0,Profesi Apoteker
+MK087,Mata Kuliah 87,3.0,Pendidikan Guru PAUD
+MK088,Mata Kuliah 88,,Teknik Informatika
+MK089,Mata Kuliah 89,3.0,Sejarah Kebudayaan Islam
+MK090,Mata Kuliah 90,3.0,Profesi Apoteker
+MK091,Mata Kuliah 91,3.0,Pendidikan Bahasa Inggris
+MK092,Mata Kuliah 92,2.0,Sejarah Kebudayaan Islam
+MK093,Mata Kuliah 93,3.0,Pendidikan Teknik Elektro
+MK094,Mata Kuliah 94,3.0,Teknik Elektro
+MK095,Mata Kuliah 95,,Teknik Mesin
+MK096,Mata Kuliah 96,3.0,Teknik Sipil
+MK097,Mata Kuliah 97,2.0,Bisnis Digital
+MK098,Mata Kuliah 98,3.0,Farmasi
+MK099,,3.0,Fisika
+MK100,Mata Kuliah 100,2.0,Ilmu Hukum
+MK101,Mata Kuliah 101,3.0,Teknik Mesin
+MK102,Mata Kuliah 102,2.0,Profesi Apoteker
+MK103,Mata Kuliah 103,2.0,Hubungan Internasional
+MK104,Mata Kuliah 104,3.0,Fisika
+MK105,Mata Kuliah 105,3.0,Pendidikan Guru SD
+MK106,Mata Kuliah 106,3.0,Pendidikan Guru PAUD
+MK107,Mata Kuliah 107,2.0,Akuntansi
+MK108,Mata Kuliah 108,2.0,
+MK109,Mata Kuliah 109,3.0,Profesi Apoteker
+MK110,Mata Kuliah 110,3.0,Sastra Inggris
+MK111,Mata Kuliah 111,3.0,Perbankan Syariah
+MK112,Mata Kuliah 112,3.0,Sastra Inggris
+MK113,Mata Kuliah 113,2.0,Pendidikan Agama Islam
+MK114,Mata Kuliah 114,2.0,Bisnis Digital
+MK115,Mata Kuliah 115,3.0,Sejarah Kebudayaan Islam
+MK116,Mata Kuliah 116,2.0,Pendidikan Guru SD
+MK117,Mata Kuliah 117,3.0,Ilmu Perpustakaan
+MK118,Mata Kuliah 118,3.0,Profesi Apoteker
+MK119, Mata Kuliah 119 ,3.0,Pendidikan Guru PAUD
+MK120,Mata Kuliah 120,3.0,Teknik Kimia
+MK121,Mata Kuliah 121,2.0,Hubungan Internasional
+MK122,Mata Kuliah 122,3.0,Arsitektur
+MK123,Mata Kuliah 123,3.0,Profesi Apoteker
+MK124,Mata Kuliah 124,3.0,Psikologi
+MK125,Mata Kuliah 125,3.0,Perbankan Syariah
+MK126,Mata Kuliah 126,3.0,Sastra Arab
+MK127,Mata Kuliah 127,3.0,Teknik Informatika
+MK128,Mata Kuliah 128,3.0,Fisika
+MK129,,3.0,Farmasi
+MK130,Mata Kuliah 130,3.0,Komunikasi dan Penyiaran Islam
+MK131,Mata Kuliah 131,2.0,Teknik Industri
+MK132,Mata Kuliah 132,3.0,Sastra Arab
+MK133,Mata Kuliah 133,3.0,Akuntansi
+MK134,Mata Kuliah 134,3.0,Manajemen
+MK135,Mata Kuliah 135,3.0,Kimia
+MK136,Mata Kuliah 136,3.0,Hubungan Internasional
+MK137,Mata Kuliah 137,2.0,Farmasi
+MK138,Mata Kuliah 138,3.0,Ekonomi Syariah
+MK139,Mata Kuliah 139,3.0,Arsitektur
+MK140,Mata Kuliah 140,2.0,Ilmu Komunikasi
+MK141,Mata Kuliah 141,3.0,Ilmu Hukum
+MK142,Mata Kuliah 142,3.0,Profesi Apoteker
+MK143,Mata Kuliah 143,3.0,Teknik Elektro
+MK144,Mata Kuliah 144,3.0,Ilmu Perpustakaan
+MK145,Mata Kuliah 145,2.0,Akuntansi
+MK146,Mata Kuliah 146,3.0,Pendidikan Bahasa Inggris
+MK147,Mata Kuliah 147,3.0,Ilmu Hukum
+MK148,Mata Kuliah 148,3.0,Psikologi
+MK149,Mata Kuliah 149,3.0,Ilmu Komunikasi
+MK150,Mata Kuliah 150,3.0,Farmasi
+MK108,Mata Kuliah 108,2.0,
