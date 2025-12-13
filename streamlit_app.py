@@ -128,7 +128,8 @@ if selected_columns and len(selected_columns) == 1:
 # If multiple columns are selected, no numeric filtering is applied
 
 # Display tabs
-tab1, tab2, tab3, tab4 = st.tabs([
+# tab1, tab2, tab3, tab4 = st.tabs([
+tab2, tab3 = st.tabs([
     # "1. S.M.A.R.T Question & Data Wrangling",
     "2. Ringkasan Statistik",
     "3. Dashboard Visualisasi",
