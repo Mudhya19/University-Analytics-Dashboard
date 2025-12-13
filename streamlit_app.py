@@ -86,7 +86,7 @@ def calculate_kpis(df):
         'total_mahasiswa': total_mahasiswa,
         'total_aktif': total_aktif,
         'total_lulus': total_lulus,
-        'persentase_aktif': (total_aktif / total_mahasiswa * 10) if total_mahasiswa > 0 else 0,
+        'persentase_aktif': (total_aktif / total_mahasiswa * 100) if total_mahasiswa > 0 else 0,
         'persentase_lulus': (total_lulus / total_mahasiswa * 100) if total_mahasiswa > 0 else 0,
         'avg_ipk': avg_ipk,
         'jalur_masuk_dist': jalur_masuk_dist,
@@ -167,7 +167,7 @@ if selected_columns and len(selected_columns) == 1:
 # If multiple columns are selected, no numeric filtering is applied
 
 # Display KPIs at the top of the dashboard
-st.markdown('<h2 class="section-header">KPI Utama</h2>', unsafe_allow_html=True)
+st.markdown('<h2 class="section-header">1. KPI Utama</h2>', unsafe_allow_html=True)
 
 # Create KPI cards
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -228,7 +228,7 @@ with col5:
     )
 
 # Display dashboard directly without tabs
-st.markdown('<h2 class="section-header">Dashboard Visualisasi</h2>', unsafe_allow_html=True)
+st.markdown('<h2 class="section-header">2. Dashboard Visualisasi</h2>', unsafe_allow_html=True)
 
 # Tambahkan filter tahun angkatan di sini
 st.sidebar.subheader("Filter Tahun Angkatan")
