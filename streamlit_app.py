@@ -158,7 +158,8 @@ fakultas_prodi_cols = [col for col in df.columns if any(keyword in col.lower() f
 selected_fakultas_col = None  # Inisialisasi variabel
 if fakultas_prodi_cols:
     selected_fakultas_col = fakultas_prodi_cols[0] # Gunakan kolom pertama yang ditemukan
-    unique_faculties = list(set(df[selected_fakultas_col].dropna().unique()))
+    # Ambil nilai unik tanpa duplikat
+    unique_faculties = df[selected_fakultas_col].dropna().unique()
     unique_faculties = [fak for fak in unique_faculties if pd.notna(fak)]  # Pastikan hanya nilai yang tidak null
     
     # Ganti selectbox dengan multiselect untuk multi-filter fakultas
