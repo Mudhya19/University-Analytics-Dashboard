@@ -51,9 +51,9 @@ def load_data():
     df = pd.read_csv('./database/data/mahasiswa_simulasi.csv')
     # Convert date columns if they exist
     for col in df.columns:
-        if 'tanggal' in col.lower() or 'date' in col.lower() or 'waktu' in col.lower():
+        if 'tanggal' in col.lower() or 'date' in col.lower() or 'waktu' in col.lower() or 'time' in col.lower():
             try:
-                df[col] = pd.to_datetime(df[col])
+                df[col] = pd.to_datetime(df[col], errors='coerce')
             except:
                 pass
     return df
@@ -62,25 +62,79 @@ def load_data():
 def calculate_kpis(df):
     total_mahasiswa = len(df)
     
-    # KPI untuk mahasiswa aktif
-    aktif_mask = df['status'].str.upper() == 'AKTIF'
-    total_aktif = df[aktif_mask]['status'].count()
+    # Find the status column
+    status_col = None
+    for col in df.columns:
+        if 'status' in col.lower():
+            status_col = col
+            break
     
-    # KPI untuk mahasiswa lulus
-    lulus_mask = df['status'].str.upper() == 'LULUS'
-    total_lulus = df[lulus_mask]['status'].count()
+    # If status column exists, calculate active and graduated counts
+    if status_col:
+        # KPI untuk mahasiswa aktif
+        aktif_mask = df[status_col].str.upper() == 'AKTIF'
+        total_aktif = df[aktif_mask][status_col].count()
+        
+        # KPI untuk mahasiswa lulus
+        lulus_mask = df[status_col].str.upper() == 'LULUS'
+        total_lulus = df[lulus_mask][status_col].count()
+    else:
+        # If no status column found, set to 0
+        total_aktif = 0
+        total_lulus = 0
     
-    # KPI untuk IPK rata-rata
-    avg_ipk = df['ipk'].mean()
+    # Find and calculate average IPK/GPA
+    ipk_col = None
+    for col in df.columns:
+        if 'ipk' in col.lower() or 'gpa' in col.lower() or 'indeks' in col.lower():
+            ipk_col = col
+            break
     
-    # KPI untuk distribusi jalur masuk
-    jalur_masuk_dist = df['jalur_masuk'].value_counts()
+    if ipk_col and col in df.columns:
+        # Handle potential non-numeric values in IPK column
+        try:
+            avg_ipk_series = pd.to_numeric(df[ipk_col], errors='coerce')
+            avg_ipk = avg_ipk_series.mean()
+        except:
+            avg_ipk = 0
+    else:
+        avg_ipk = 0
     
-    # KPI untuk distribusi jenjang
-    jenjang_dist = df['jenjang'].value_counts()
+    # Find and calculate distribution of admission pathway
+    jalur_col = None
+    for col in df.columns:
+        if 'jalur' in col.lower() or 'masuk' in col.lower() or 'admission' in col.lower() or 'entry' in col.lower():
+            jalur_col = col
+            break
     
-    # KPI untuk jumlah mahasiswa per angkatan
-    angkatan_dist = df['angkatan'].value_counts().sort_index()
+    if jalur_col and jalur_col in df.columns:
+        jalur_masuk_dist = df[jalur_col].value_counts()
+    else:
+        jalur_masuk_dist = pd.Series(dtype='int64')
+    
+    # Find and calculate distribution of education level
+    jenjang_col = None
+    for col in df.columns:
+        if 'jenjang' in col.lower() or 'level' in col.lower() or 'degree' in col.lower() or 'program' in col.lower():
+            jenjang_col = col
+            break
+    
+    if jenjang_col and jenjang_col in df.columns:
+        jenjang_dist = df[jenjang_col].value_counts()
+    else:
+        jenjang_dist = pd.Series(dtype='int64')
+    
+    # Find and calculate distribution by cohort/year
+    angkatan_col = None
+    for col in df.columns:
+        if 'angkatan' in col.lower() or 'tahun' in col.lower() or 'year' in col.lower() or 'cohort' in col.lower():
+            angkatan_col = col
+            break
+    
+    if angkatan_col and angkatan_col in df.columns:
+        angkatan_dist = df[angkatan_col].value_counts().sort_index()
+    else:
+        angkatan_dist = pd.Series(dtype='int64')
     
     return {
         'total_mahasiswa': total_mahasiswa,
@@ -248,6 +302,23 @@ if tahun_angkatan_cols:
         df_filtered_visual = df_filtered
 else:
     df_filtered_visual = df_filtered
+
+# Tambahkan filter fakultas di sini
+st.sidebar.subheader("Filter Fakultas")
+# Mencari kolom yang mungkin berisi informasi fakultas/jurusan
+fakultas_prodi_cols = [col for col in df.columns if 'fakultas' in col.lower() or 'faculty' in col.lower() or 'prodi' in col.lower() or 'jurusan' in col.lower() or 'department' in col.lower()]
+if fakultas_prodi_cols:
+    selected_fakultas_col = st.sidebar.selectbox("Pilih Kolom Fakultas/Jurusan", ["Semua"] + fakultas_prodi_cols, key="fakultas_col_filter")
+    
+    if selected_fakultas_col != "Semua":
+        unique_faculties = df[selected_fakultas_col].unique()
+        selected_faculty = st.sidebar.selectbox(f"Pilih {selected_fakultas_col}", ["Semua"] + list(unique_faculties), key="selected_faculty_filter")
+        
+        if selected_faculty != "Semua" and selected_faculty:
+            df_filtered_visual = df_filtered_visual[df_filtered_visual[selected_fakultas_col] == selected_faculty]
+        # else: already handled, df_filtered_visual remains as is
+    # else: already handled, df_filtered_visual remains as is
+# else: no faculty/prodi columns found, skip filter
 
     df_cleaned_visual = df_filtered.copy()
     original_shape = df_cleaned_visual.shape
