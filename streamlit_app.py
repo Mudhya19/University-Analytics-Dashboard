@@ -158,10 +158,12 @@ fakultas_prodi_cols = [col for col in df.columns if 'fakultas' in col.lower() or
 selected_fakultas_col = None  # Inisialisasi variabel
 if fakultas_prodi_cols:
     selected_fakultas_col = fakultas_prodi_cols[0] # Gunakan kolom pertama yang ditemukan
-    unique_faculties_series = df[selected_fakultas_col].dropna()
-    # Gunakan pandas unique() untuk mendapatkan nilai unik tanpa duplikat
-    unique_faculties = unique_faculties_series.drop_duplicates().tolist()
-    unique_faculties = [fak for fak in unique_faculties if pd.notna(fak)]  # Pastikan hanya nilai yang tidak null
+    # Ambil semua nilai dari kolom fakultas dan pastikan unik
+    all_faculty_values = df[selected_fakultas_col].dropna()
+    # Gunakan set untuk mendapatkan nilai unik, lalu ubah kembali ke list
+    unique_faculties = list(set(all_faculty_values))
+    # Bersihkan nilai NaN jika ada setelah konversi
+    unique_faculties = [fak for fak in unique_faculties if pd.notna(fak) and str(fak).lower() != 'nan']
     
     # Ganti selectbox dengan multiselect untuk multi-filter fakultas
     selected_faculties = st.sidebar.multiselect(f"Pilih {selected_fakultas_col}", unique_faculties, default=unique_faculties)
