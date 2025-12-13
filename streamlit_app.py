@@ -97,9 +97,6 @@ def calculate_kpis(df):
 try:
     df = load_data()
     st.success(f"Dataset berhasil dimuat! Bentuk: {df.shape}")
-    
-    # Calculate KPIs
-    kpis = calculate_kpis(df)
 except FileNotFoundError:
     st.error("Dataset 'mahasiswa_simulasi.csv' tidak ditemukan. Pastikan file tersebut ada.")
     st.stop()
@@ -141,6 +138,9 @@ if date_columns:
         df_filtered = df
 else:
     df_filtered = df
+
+# Calculate KPIs
+kpis = calculate_kpis(df_filtered)
 
 # Column selection for analysis
 numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()
@@ -241,15 +241,15 @@ if tahun_angkatan_cols:
         selected_year_tab3 = st.sidebar.selectbox(f"Pilih Tahun dari {selected_tahun_angkatan_tab3}", ["Semua"] + list(unique_years), key="tab3_selected_year")
         
         if selected_year_tab3 != "Semua" and selected_year_tab3:
-            df_filtered_visual = df[df[selected_tahun_angkatan_tab3] == selected_year_tab3]
+            df_filtered_visual = df_filtered[df_filtered[selected_tahun_angkatan_tab3] == selected_year_tab3]
         else:
-            df_filtered_visual = df
+            df_filtered_visual = df_filtered
     else:
-        df_filtered_visual = df
+        df_filtered_visual = df_filtered
 else:
-    df_filtered_visual = df
+    df_filtered_visual = df_filtered
 
-    df_cleaned_visual = df_filtered_visual.copy()
+    df_cleaned_visual = df_filtered.copy()
     original_shape = df_cleaned_visual.shape
     
     # Isi nilai hilang dengan mean/median
