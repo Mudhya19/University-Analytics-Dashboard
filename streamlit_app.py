@@ -167,7 +167,7 @@ if selected_columns and len(selected_columns) == 1:
 # If multiple columns are selected, no numeric filtering is applied
 
 # Display KPIs at the top of the dashboard
-st.markdown('<h2 class="section-header">1. KPI Utama</h2>', unsafe_allow_html=True)
+st.markdown('<h2 class="section-header">KPI Utama</h2>', unsafe_allow_html=True)
 
 # Create KPI cards
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -281,7 +281,7 @@ else:
     st.sidebar.success("Pembersihan data selesai!")
     st.sidebar.metric(label="Ukuran Dataset yang Dibersihkan", value=f"{len(df_cleaned_visual):,} rekaman", delta=f"-{original_shape[0] - len(df_cleaned_visual)} dari ukuran awal")
 
-st.subheader("📊 Jenis-Jenis Visualisasi")
+# st.subheader("📊 Jenis-Jenis Visualisasi")
 
 # Visualisasi 1: Bar Chart
 st.markdown("### 📊 Bar Chart - Distribusi Mahasiswa per Jurusan/Fakultas")
