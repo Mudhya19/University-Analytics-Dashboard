@@ -128,8 +128,7 @@ if selected_columns and len(selected_columns) == 1:
 # If multiple columns are selected, no numeric filtering is applied
 
 # Display tabs
-# tab1, tab2, tab3, tab4 = st.tabs([
-    tab2, tab3 = st.tabs([
+tab3 = st.tabs([
     # "1. S.M.A.R.T Question & Data Wrangling",
     # "2. Ringkasan Statistik",
     "Dashboard Visualisasi",
@@ -256,103 +255,103 @@ if selected_columns and len(selected_columns) == 1:
 #         st.success("Pembersihan data selesai!")
 #         st.metric(label="Ukuran Dataset yang Dibersihkan", value=f"{len(df_cleaned):,} rekaman", delta=f"-{original_shape[0] - len(df_cleaned)} dari ukuran awal")
 
-with tab2:
-    st.markdown('<h2 class="section-header">2. Ringkasan Statistik</h2>', unsafe_allow_html=True)
+# with tab2:
+#     st.markdown('<h2 class="section-header">2. Ringkasan Statistik</h2>', unsafe_allow_html=True)
     
-    st.subheader("📈 Statistik Deskriptif")
+#     st.subheader("📈 Statistik Deskriptif")
     
-    # Overall dataset statistics
-    st.markdown("**Statistik Deskriptif Keseluruhan Dataset:**")
-    overall_stats = df_filtered.describe(include="all")
-    st.dataframe(overall_stats.style.background_gradient(cmap='RdPu'), use_container_width=True)
+#     # Overall dataset statistics
+#     st.markdown("**Statistik Deskriptif Keseluruhan Dataset:**")
+#     overall_stats = df_filtered.describe(include="all")
+#     st.dataframe(overall_stats.style.background_gradient(cmap='RdPu'), use_container_width=True)
     
-    # Container for numerical statistics if available
-    if numeric_columns:
-        st.markdown("**Statistik Deskriptif untuk Kolom Numerik:**")
-        desc_stats = df_filtered[numeric_columns].describe()
-        st.dataframe(desc_stats, use_container_width=True)
+#     # Container for numerical statistics if available
+#     if numeric_columns:
+#         st.markdown("**Statistik Deskriptif untuk Kolom Numerik:**")
+#         desc_stats = df_filtered[numeric_columns].describe()
+#         st.dataframe(desc_stats, use_container_width=True)
         
-        # Layout configuration based on available space and content
-        num_cols_count = len(numeric_columns)
-        if num_cols_count >= 2:
-            # Use 2x2 grid for multiple columns
-            col1, col2 = st.columns(2)
-            with col1:
-                st.markdown("**Distribusi Kolom Numerikal**")
-                selected_num_col_1 = st.selectbox("Pilih Kolom Numerikal (1)", numeric_columns, key="histogram_col_select_1")
-                fig_hist, ax = plt.subplots(figsize=(8, 6))
-                ax.hist(df_filtered[selected_num_col_1].dropna(), bins=20, edgecolor='black')
-                ax.set_title(f'Distribusi {selected_num_col_1}')
-                ax.set_xlabel(selected_num_col_1 or 'Kolom')
-                ax.set_ylabel('Frekuensi')
-                st.pyplot(fig_hist)
-                plt.close()
+#         # Layout configuration based on available space and content
+#         num_cols_count = len(numeric_columns)
+#         if num_cols_count >= 2:
+#             # Use 2x2 grid for multiple columns
+#             col1, col2 = st.columns(2)
+#             with col1:
+#                 st.markdown("**Distribusi Kolom Numerikal**")
+#                 selected_num_col_1 = st.selectbox("Pilih Kolom Numerikal (1)", numeric_columns, key="histogram_col_select_1")
+#                 fig_hist, ax = plt.subplots(figsize=(8, 6))
+#                 ax.hist(df_filtered[selected_num_col_1].dropna(), bins=20, edgecolor='black')
+#                 ax.set_title(f'Distribusi {selected_num_col_1}')
+#                 ax.set_xlabel(selected_num_col_1 or 'Kolom')
+#                 ax.set_ylabel('Frekuensi')
+#                 st.pyplot(fig_hist)
+#                 plt.close()
             
-            with col2:
-                st.markdown("**Statistik Spesifik**")
-                selected_num_col_2 = st.selectbox("Pilih Kolom Numerikal (2)", numeric_columns, key="stats_col_select_2")
-                col_data = df_filtered[selected_num_col_2].dropna()
-                stats_dict = {
-                    'Mean': float(col_data.mean()) if len(col_data) > 0 else 0,
-                    'Median': float(col_data.median()) if len(col_data) > 0 else 0,
-                    'Std Dev': round(float(col_data.std()) if len(col_data) > 0 and col_data.std() is not None and not pd.isna(col_data.std()) else 0, 2),
-                    'Variance': round(float(col_data.var()) if len(col_data) > 0 and col_data.var() is not None and not pd.isna(col_data.var()) else 0, 2),
-                    'Min': round(float(col_data.min()) if len(col_data) > 0 and col_data.min() is not None and not pd.isna(col_data.min()) else 0, 2),
-                    'Max': round(float(col_data.max()) if len(col_data) > 0 and col_data.max() is not None and not pd.isna(col_data.max()) else 0, 2)
-                }
-                stats_df = pd.DataFrame(list(stats_dict.items()), columns=['Statistik', 'Nilai'])
-                # Convert values to float for display
-                stats_df['Nilai'] = stats_df['Nilai'].apply(lambda x: float(x) if x is not None and not pd.isna(x) else 0.0)
-                st.dataframe(stats_df, use_container_width=True)
-        else:
-            # Single column layout
-            st.markdown("**Distribusi dan Statistik Kolom Numerikal**")
-            selected_num_col = st.selectbox("Pilih Kolom Numerikal", numeric_columns, key="histogram_col_select_single")
-            col1, col2 = st.columns([2, 1])
-            with col1:
-                fig_hist, ax = plt.subplots(figsize=(8, 6))
-                ax.hist(df_filtered[selected_num_col].dropna(), bins=20, edgecolor='black')
-                ax.set_title(f'Distribusi {selected_num_col}')
-                ax.set_xlabel(selected_num_col or 'Kolom')
-                ax.set_ylabel('Frekuensi')
-                st.pyplot(fig_hist)
-                plt.close()
-            with col2:
-                col_data = df_filtered[selected_num_col].dropna()
-                stats_dict = {
-                    'Mean': round(float(col_data.mean()) if len(col_data) > 0 and col_data.mean() is not None and not pd.isna(col_data.mean()) else 0, 2),
-                    'Median': round(float(col_data.median()) if len(col_data) > 0 and col_data.median() is not None and not pd.isna(col_data.median()) else 0, 2),
-                    'Std Dev': round(float(col_data.std()) if len(col_data) > 0 and col_data.std() is not None and not pd.isna(col_data.std()) else 0, 2),
-                    'Variance': round(float(col_data.var()) if len(col_data) > 0 and col_data.var() is not None and not pd.isna(col_data.var()) else 0, 2),
-                    'Min': round(float(col_data.min()) if len(col_data) > 0 and col_data.min() is not None and not pd.isna(col_data.min()) else 0, 2),
-                    'Max': round(float(col_data.max()) if len(col_data) > 0 and col_data.max() is not None and not pd.isna(col_data.max()) else 0, 2)
-                }
-                stats_df = pd.DataFrame(list(stats_dict.items()), columns=['Statistik', 'Nilai'])
-                st.dataframe(stats_df, use_container_width=True)
-    else:
-        st.info("Tidak ada kolom numerik untuk ditampilkan.")
+#             with col2:
+#                 st.markdown("**Statistik Spesifik**")
+#                 selected_num_col_2 = st.selectbox("Pilih Kolom Numerikal (2)", numeric_columns, key="stats_col_select_2")
+#                 col_data = df_filtered[selected_num_col_2].dropna()
+#                 stats_dict = {
+#                     'Mean': float(col_data.mean()) if len(col_data) > 0 else 0,
+#                     'Median': float(col_data.median()) if len(col_data) > 0 else 0,
+#                     'Std Dev': round(float(col_data.std()) if len(col_data) > 0 and col_data.std() is not None and not pd.isna(col_data.std()) else 0, 2),
+#                     'Variance': round(float(col_data.var()) if len(col_data) > 0 and col_data.var() is not None and not pd.isna(col_data.var()) else 0, 2),
+#                     'Min': round(float(col_data.min()) if len(col_data) > 0 and col_data.min() is not None and not pd.isna(col_data.min()) else 0, 2),
+#                     'Max': round(float(col_data.max()) if len(col_data) > 0 and col_data.max() is not None and not pd.isna(col_data.max()) else 0, 2)
+#                 }
+#                 stats_df = pd.DataFrame(list(stats_dict.items()), columns=['Statistik', 'Nilai'])
+#                 # Convert values to float for display
+#                 stats_df['Nilai'] = stats_df['Nilai'].apply(lambda x: float(x) if x is not None and not pd.isna(x) else 0.0)
+#                 st.dataframe(stats_df, use_container_width=True)
+#         else:
+#             # Single column layout
+#             st.markdown("**Distribusi dan Statistik Kolom Numerikal**")
+#             selected_num_col = st.selectbox("Pilih Kolom Numerikal", numeric_columns, key="histogram_col_select_single")
+#             col1, col2 = st.columns([2, 1])
+#             with col1:
+#                 fig_hist, ax = plt.subplots(figsize=(8, 6))
+#                 ax.hist(df_filtered[selected_num_col].dropna(), bins=20, edgecolor='black')
+#                 ax.set_title(f'Distribusi {selected_num_col}')
+#                 ax.set_xlabel(selected_num_col or 'Kolom')
+#                 ax.set_ylabel('Frekuensi')
+#                 st.pyplot(fig_hist)
+#                 plt.close()
+#             with col2:
+#                 col_data = df_filtered[selected_num_col].dropna()
+#                 stats_dict = {
+#                     'Mean': round(float(col_data.mean()) if len(col_data) > 0 and col_data.mean() is not None and not pd.isna(col_data.mean()) else 0, 2),
+#                     'Median': round(float(col_data.median()) if len(col_data) > 0 and col_data.median() is not None and not pd.isna(col_data.median()) else 0, 2),
+#                     'Std Dev': round(float(col_data.std()) if len(col_data) > 0 and col_data.std() is not None and not pd.isna(col_data.std()) else 0, 2),
+#                     'Variance': round(float(col_data.var()) if len(col_data) > 0 and col_data.var() is not None and not pd.isna(col_data.var()) else 0, 2),
+#                     'Min': round(float(col_data.min()) if len(col_data) > 0 and col_data.min() is not None and not pd.isna(col_data.min()) else 0, 2),
+#                     'Max': round(float(col_data.max()) if len(col_data) > 0 and col_data.max() is not None and not pd.isna(col_data.max()) else 0, 2)
+#                 }
+#                 stats_df = pd.DataFrame(list(stats_dict.items()), columns=['Statistik', 'Nilai'])
+#                 st.dataframe(stats_df, use_container_width=True)
+#     else:
+#         st.info("Tidak ada kolom numerik untuk ditampilkan.")
     
-    # Container for categorical statistics if available
-    if categorical_columns:
-        st.markdown("---")  # Separator
-        st.markdown("**Distribusi Kolom Kategorikal**")
-        cat_col = st.selectbox("Pilih Kolom Kategorikal", categorical_columns, key="cat_col_select") # Pilihan kolom kategorikal
-        if cat_col:
-            cat_summary = df_filtered[cat_col].value_counts()
-            st.write(f"**Distribusi {cat_col}:**")
-            st.dataframe(cat_summary, use_container_width=True)
+#     # Container for categorical statistics if available
+#     if categorical_columns:
+#         st.markdown("---")  # Separator
+#         st.markdown("**Distribusi Kolom Kategorikal**")
+#         cat_col = st.selectbox("Pilih Kolom Kategorikal", categorical_columns, key="cat_col_select") # Pilihan kolom kategorikal
+#         if cat_col:
+#             cat_summary = df_filtered[cat_col].value_counts()
+#             st.write(f"**Distribusi {cat_col}:**")
+#             st.dataframe(cat_summary, use_container_width=True)
             
-            # Visualisasi distribusi kategorikal
-            fig_bar, ax = plt.subplots(figsize=(10, 6))
-            cat_summary.plot(kind='bar', ax=ax)
-            ax.set_title(f'Distribusi {cat_col}')
-            ax.set_xlabel(cat_col)
-            ax.set_ylabel('Jumlah')
-            plt.xticks(rotation=45, ha="right")
-            st.pyplot(fig_bar)
-            plt.close()
-    else:
-        st.info("Tidak ada kolom kategorik untuk ditampilkan.")
+#             # Visualisasi distribusi kategorikal
+#             fig_bar, ax = plt.subplots(figsize=(10, 6))
+#             cat_summary.plot(kind='bar', ax=ax)
+#             ax.set_title(f'Distribusi {cat_col}')
+#             ax.set_xlabel(cat_col)
+#             ax.set_ylabel('Jumlah')
+#             plt.xticks(rotation=45, ha="right")
+#             st.pyplot(fig_bar)
+#             plt.close()
+#     else:
+#         st.info("Tidak ada kolom kategorik untuk ditampilkan.")
 
 with tab3:
     st.markdown('<h2 class="section-header">3. Dashboard Visualisasi</h2>', unsafe_allow_html=True)
