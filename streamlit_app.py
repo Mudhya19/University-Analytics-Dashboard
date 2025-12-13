@@ -182,7 +182,7 @@ else:
     kpis = calculate_kpis(df)
 
 # Display KPIs at the top of the dashboard
-st.markdown('<h2 class="section-header">1. KPI Utama</h2>', unsafe_allow_html=True)
+st.markdown('<h1 class="section-header">KPI Utama</h1>', unsafe_allow_html=True)
 
 # Create KPI cards with guaranteed display
 col1, col2, col3, col4, col5 = st.columns(5)
@@ -352,7 +352,7 @@ st.sidebar.success("Pembersihan data selesai!")
 st.sidebar.metric(label="Ukuran Dataset yang Dibersihkan", value=f"{len(df_cleaned_visual):,} rekaman", delta=f"-{original_shape[0] - len(df_cleaned_visual)} dari ukuran awal")
 
 # Display dashboard section
-st.markdown('<h2 class="section-header">2. Dashboard Visualisasi</h2>', unsafe_allow_html=True)
+st.markdown('<h1 class="section-header">Dashboard Visualisasi</h1>', unsafe_allow_html=True)
 
 # Visualisasi 1: Bar Chart
 st.markdown("### 📊 Bar Chart - Distribusi Mahasiswa per Jurusan/Fakultas")
