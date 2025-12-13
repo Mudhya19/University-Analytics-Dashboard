@@ -135,125 +135,125 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "4. Insight & Kesimpulan"
 ])
 
-with tab1:
-    st.markdown('<h2 class="section-header">1. S.M.A.R.T Question & Data Wrangling</h2>', unsafe_allow_html=True)
+# with tab1:
+#     st.markdown('<h2 class="section-header">1. S.M.A.R.T Question & Data Wrangling</h2>', unsafe_allow_html=True)
     
-    # S.M.A.R.T Question Section
-    st.subheader("🎯 S.M.A.R.T Question")
+#     # S.M.A.R.T Question Section
+#     st.subheader("🎯 S.M.A.R.T Question")
     
-    smart_questions = [
-        "**Specific**: Apa yang menjadi faktor utama yang mempengaruhi tingkat kelulusan mahasiswa?",
-        "**Measurable**: Berapa persentase mahasiswa yang berhasil menyelesaikan studi tepat waktu?",
-        "**Achievable**: Dapatkah kita mengidentifikasi mahasiswa berisiko putus kuliah sejak dini?",
-        "**Relevant**: Bagaimana hubungan antara IPK, kehadiran, dan hasil akademik?",
-        "**Time-bound**: Bagaimana tren akademik mahasiswa dari tahun ke tahun?"
-    ]
+#     smart_questions = [
+#         "**Specific**: Apa yang menjadi faktor utama yang mempengaruhi tingkat kelulusan mahasiswa?",
+#         "**Measurable**: Berapa persentase mahasiswa yang berhasil menyelesaikan studi tepat waktu?",
+#         "**Achievable**: Dapatkah kita mengidentifikasi mahasiswa berisiko putus kuliah sejak dini?",
+#         "**Relevant**: Bagaimana hubungan antara IPK, kehadiran, dan hasil akademik?",
+#         "**Time-bound**: Bagaimana tren akademik mahasiswa dari tahun ke tahun?"
+#     ]
     
-    for q in smart_questions:
-        st.write(q)
+#     for q in smart_questions:
+#         st.write(q)
     
-    st.markdown("---")
+#     st.markdown("---")
     
-    # Data Wrangling Section
-    st.subheader("🧩 Data Wrangling")
+#     # Data Wrangling Section
+#     st.subheader("🧩 Data Wrangling")
     
-    col1, col2, col3 = st.columns(3)
+#     col1, col2, col3 = st.columns(3)
     
-    with col1:
-        st.markdown("**Data Collection**")
-        st.metric(label="Total Records", value=f"{len(df):,}")
-        st.metric(label="Total Columns", value=df.shape[1])
+#     with col1:
+#         st.markdown("**Data Collection**")
+#         st.metric(label="Total Records", value=f"{len(df):,}")
+#         st.metric(label="Total Columns", value=df.shape[1])
     
-    with col2:
-        st.markdown("**Data Assessment**")
-        missing_values = df.isnull().sum().sum()
-        st.metric(label="Missing Values", value=f"{missing_values:,}")
-        duplicate_rows = df.duplicated().sum()
-        st.metric(label="Duplicate Rows", value=f"{duplicate_rows:,}")
+#     with col2:
+#         st.markdown("**Data Assessment**")
+#         missing_values = df.isnull().sum().sum()
+#         st.metric(label="Missing Values", value=f"{missing_values:,}")
+#         duplicate_rows = df.duplicated().sum()
+#         st.metric(label="Duplicate Rows", value=f"{duplicate_rows:,}")
     
-    with col3:
-        st.markdown("**Data Cleaning**")
-        st.write(f"Numeric columns: {len(numeric_columns)}")
-        st.write(f"Categorical columns: {len(categorical_columns)}")
+#     with col3:
+#         st.markdown("**Data Cleaning**")
+#         st.write(f"Numeric columns: {len(numeric_columns)}")
+#         st.write(f"Categorical columns: {len(categorical_columns)}")
 
-    st.markdown("---")
+#     st.markdown("---")
     
-    # Detailed Data Assessment
-    st.subheader("📋 Penilaian Data Terperinci")
+#     # Detailed Data Assessment
+#     st.subheader("📋 Penilaian Data Terperinci")
     
-    col1, col2 = st.columns(2)
+#     col1, col2 = st.columns(2)
     
-    with col1:
-        st.write("**Info Dataset:**")
-        info_str = f"Bentuk: {df.shape}\n\nKolom:\n"
-        for i, col in enumerate(df.columns):
-            dtype = df[col].dtype
-            non_null_count = df[col].notna().sum()
-            null_count = df[col].isna().sum()
-            info_str += f"- {col}: {dtype} ({non_null_count} tidak null, {null_count} null)\n"
-        st.text(info_str)
+#     with col1:
+#         st.write("**Info Dataset:**")
+#         info_str = f"Bentuk: {df.shape}\n\nKolom:\n"
+#         for i, col in enumerate(df.columns):
+#             dtype = df[col].dtype
+#             non_null_count = df[col].notna().sum()
+#             null_count = df[col].isna().sum()
+#             info_str += f"- {col}: {dtype} ({non_null_count} tidak null, {null_count} null)\n"
+#         st.text(info_str)
     
-    with col2:
-        st.write("**Nilai Hilang per Kolom:**")
-        missing_df = pd.DataFrame({
-            'Kolom': df.columns,
-            'Jumlah Hilang': df.isnull().sum(),
-            'Persentase Hilang': (df.isnull().sum() / len(df)) * 10
-        })
-        st.dataframe(missing_df.style.format({'Persentase Hilang': '{:.2f}%'}))
+#     with col2:
+#         st.write("**Nilai Hilang per Kolom:**")
+#         missing_df = pd.DataFrame({
+#             'Kolom': df.columns,
+#             'Jumlah Hilang': df.isnull().sum(),
+#             'Persentase Hilang': (df.isnull().sum() / len(df)) * 10
+#         })
+#         st.dataframe(missing_df.style.format({'Persentase Hilang': '{:.2f}%'}))
     
-    st.markdown("---")
+#     st.markdown("---")
     
-    # Data Cleaning Actions
-    st.subheader("🔧 Proses Pembersihan Data Otomatis")
+#     # Data Cleaning Actions
+#     st.subheader("🔧 Proses Pembersihan Data Otomatis")
     
-    st.info("Proses pembersihan data akan menerapkan semua langkah-langkah berikut secara otomatis:")
-    st.write("- Hapus baris dengan nilai hilang")
-    st.write("- Isi nilai hilang dengan mean/median")
-    st.write("- Hapus baris duplikat")
-    st.write("- Ubah tipe data")
+#     st.info("Proses pembersihan data akan menerapkan semua langkah-langkah berikut secara otomatis:")
+#     st.write("- Hapus baris dengan nilai hilang")
+#     st.write("- Isi nilai hilang dengan mean/median")
+#     st.write("- Hapus baris duplikat")
+#     st.write("- Ubah tipe data")
     
-    if st.button("Terapkan Pembersihan Otomatis"):
-        df_cleaned = df.copy()
-        original_shape = df_cleaned.shape
+#     if st.button("Terapkan Pembersihan Otomatis"):
+#         df_cleaned = df.copy()
+#         original_shape = df_cleaned.shape
         
-        # Isi nilai hilang dengan mean/median
-        for col in numeric_columns:
-            if df_cleaned[col].isnull().any():
-                if col in ['age', 'semester', 'ipk', 'nilai']:
-                    df_cleaned[col].fillna(df_cleaned[col].median(), inplace=True)
-                else:
-                    df_cleaned[col].fillna(df_cleaned[col].mean(), inplace=True)
+#         # Isi nilai hilang dengan mean/median
+#         for col in numeric_columns:
+#             if df_cleaned[col].isnull().any():
+#                 if col in ['age', 'semester', 'ipk', 'nilai']:
+#                     df_cleaned[col].fillna(df_cleaned[col].median(), inplace=True)
+#                 else:
+#                     df_cleaned[col].fillna(df_cleaned[col].mean(), inplace=True)
         
-        for col in categorical_columns:
-            if df_cleaned[col].isnull().any():
-                mode_val = df_cleaned[col].mode()
-                if not mode_val.empty:
-                    df_cleaned[col].fillna(mode_val[0], inplace=True)
-                else:
-                    df_cleaned[col].fillna('Tidak Diketahui', inplace=True)
+#         for col in categorical_columns:
+#             if df_cleaned[col].isnull().any():
+#                 mode_val = df_cleaned[col].mode()
+#                 if not mode_val.empty:
+#                     df_cleaned[col].fillna(mode_val[0], inplace=True)
+#                 else:
+#                     df_cleaned[col].fillna('Tidak Diketahui', inplace=True)
                 
-        st.success("Proses pengisian nilai hilang selesai")
+#         st.success("Proses pengisian nilai hilang selesai")
         
-        # Hapus baris duplikat
-        original_len = len(df_cleaned)
-        df_cleaned = df_cleaned.drop_duplicates()
-        removed_count = original_len - len(df_cleaned)
-        st.success(f"Hapus {removed_count} baris duplikat")
+#         # Hapus baris duplikat
+#         original_len = len(df_cleaned)
+#         df_cleaned = df_cleaned.drop_duplicates()
+#         removed_count = original_len - len(df_cleaned)
+#         st.success(f"Hapus {removed_count} baris duplikat")
         
-        # Ubah tipe data
-        for col in df_cleaned.columns:
-            if df_cleaned[col].dtype == 'object':
-                # Try to convert to numeric if possible
-                try:
-                    df_cleaned[col] = pd.to_numeric(df_cleaned[col], errors='coerce')
-                except:
-                    pass
-        st.success("Konversi tipe data diterapkan")
+#         # Ubah tipe data
+#         for col in df_cleaned.columns:
+#             if df_cleaned[col].dtype == 'object':
+#                 # Try to convert to numeric if possible
+#                 try:
+#                     df_cleaned[col] = pd.to_numeric(df_cleaned[col], errors='coerce')
+#                 except:
+#                     pass
+#         st.success("Konversi tipe data diterapkan")
         
-        st.session_state.df_cleaned = df_cleaned
-        st.success("Pembersihan data selesai!")
-        st.metric(label="Ukuran Dataset yang Dibersihkan", value=f"{len(df_cleaned):,} rekaman", delta=f"-{original_shape[0] - len(df_cleaned)} dari ukuran awal")
+#         st.session_state.df_cleaned = df_cleaned
+#         st.success("Pembersihan data selesai!")
+#         st.metric(label="Ukuran Dataset yang Dibersihkan", value=f"{len(df_cleaned):,} rekaman", delta=f"-{original_shape[0] - len(df_cleaned)} dari ukuran awal")
 
 with tab2:
     st.markdown('<h2 class="section-header">2. Ringkasan Statistik</h2>', unsafe_allow_html=True)
@@ -530,46 +530,46 @@ with tab3:
                                        labels={selected_ipk_col: selected_ipk_col, 'count': 'Frekuensi'})
                 st.plotly_chart(fig_hist, use_container_width=True)
 
-with tab4:
-    st.markdown('<h2 class="section-header">4. Insight & Kesimpulan</h2>', unsafe_allow_html=True)
+# with tab4:
+#     st.markdown('<h2 class="section-header">4. Insight & Kesimpulan</h2>', unsafe_allow_html=True)
     
-    st.subheader("🔍 Insight Utama")
+#     st.subheader("🔍 Insight Utama")
     
-    # Insight berdasarkan data
-    insights = [
-        "**Distribusi IPK Mahasiswa:** Sebagian besar mahasiswa memiliki IPK di atas 3.0, menunjukkan kinerja akademik yang baik secara umum.",
-        "**Perbedaan Kinerja antar Fakultas/Jurusan:** Terdapat variasi kinerja akademik antar fakultas/jurusan, dengan beberapa program studi menunjukkan rata-rata IPK yang lebih tinggi.",
-        "**Tren Mahasiswa per Tahun Angkatan:** Jumlah mahasiswa mengalami fluktuasi dari tahun ke tahun, yang mungkin berkaitan dengan kebijakan penerimaan atau kondisi eksternal.",
-        "**Korelasi antara IPK dan Nilai Ujian:** Terdapat hubungan positif antara IPK dan nilai ujian, menunjukkan bahwa mahasiswa dengan IPK tinggi cenderung memiliki nilai ujian yang baik.",
-        "**Proporsi Mahasiswa berdasarkan Gender:** Komposisi mahasiswa laki-laki dan perempuan relatif seimbang, meskipun mungkin bervariasi antar fakultas."
-    ]
+#     # Insight berdasarkan data
+#     insights = [
+#         "**Distribusi IPK Mahasiswa:** Sebagian besar mahasiswa memiliki IPK di atas 3.0, menunjukkan kinerja akademik yang baik secara umum.",
+#         "**Perbedaan Kinerja antar Fakultas/Jurusan:** Terdapat variasi kinerja akademik antar fakultas/jurusan, dengan beberapa program studi menunjukkan rata-rata IPK yang lebih tinggi.",
+#         "**Tren Mahasiswa per Tahun Angkatan:** Jumlah mahasiswa mengalami fluktuasi dari tahun ke tahun, yang mungkin berkaitan dengan kebijakan penerimaan atau kondisi eksternal.",
+#         "**Korelasi antara IPK dan Nilai Ujian:** Terdapat hubungan positif antara IPK dan nilai ujian, menunjukkan bahwa mahasiswa dengan IPK tinggi cenderung memiliki nilai ujian yang baik.",
+#         "**Proporsi Mahasiswa berdasarkan Gender:** Komposisi mahasiswa laki-laki dan perempuan relatif seimbang, meskipun mungkin bervariasi antar fakultas."
+#     ]
     
-    for insight in insights:
-        st.write(insight)
+#     for insight in insights:
+#         st.write(insight)
     
-    st.markdown("---")
+#     st.markdown("---")
     
-    st.subheader("💡 Rekomendasi")
+#     st.subheader("💡 Rekomendasi")
     
-    recommendations = [
-        "**Peningkatan Akademik:** Untuk fakultas/jurusan dengan rata-rata IPK lebih rendah, disarankan untuk memberikan dukungan akademik tambahan seperti tutoring atau bimbingan belajar.",
-        "**Early Warning System:** Identifikasi mahasiswa berisiko rendah berdasarkan IPK awal dan nilai ujian untuk mencegah putus studi.",
-        "**Pembagian Beban Akademik:** Evaluasi distribusi jumlah mahasiswa per tahun angkatan untuk perencanaan sumber daya yang lebih efektif.",
-        "**Pemantauan Berkala:** Lakukan evaluasi berkala terhadap korelasi IPK dan faktor-faktor lainnya untuk menjaga kualitas pendidikan."
-    ]
+#     recommendations = [
+#         "**Peningkatan Akademik:** Untuk fakultas/jurusan dengan rata-rata IPK lebih rendah, disarankan untuk memberikan dukungan akademik tambahan seperti tutoring atau bimbingan belajar.",
+#         "**Early Warning System:** Identifikasi mahasiswa berisiko rendah berdasarkan IPK awal dan nilai ujian untuk mencegah putus studi.",
+#         "**Pembagian Beban Akademik:** Evaluasi distribusi jumlah mahasiswa per tahun angkatan untuk perencanaan sumber daya yang lebih efektif.",
+#         "**Pemantauan Berkala:** Lakukan evaluasi berkala terhadap korelasi IPK dan faktor-faktor lainnya untuk menjaga kualitas pendidikan."
+#     ]
     
-    for rec in recommendations:
-        st.write(rec)
+#     for rec in recommendations:
+#         st.write(rec)
     
-    st.markdown("---")
+#     st.markdown("---")
     
-    st.subheader("📈 Kesimpulan")
-    st.write("""
-    Dashboard analitik universitas ini menyediakan gambaran komprehensif tentang kinerja akademik mahasiswa. Melalui berbagai visualisasi, kita dapat mengidentifikasi pola penting dalam data mahasiswa, termasuk distribusi IPK, perbedaan kinerja antar fakultas, dan tren sepanjang waktu. Insight yang diperoleh dari data ini dapat digunakan untuk mendukung pengambilan keputusan strategis dalam meningkatkan kualitas pendidikan dan pengalaman mahasiswa.
-    """)
-    st.write("""
-    Data menunjukkan bahwa secara keseluruhan kinerja akademik mahasiswa cukup baik, namun masih terdapat ruang untuk perbaikan, terutama dalam mendukung mahasiswa yang berisiko rendah dan memastikan distribusi sumber daya yang efektif di seluruh fakultas dan program studi.
-    """)
+#     st.subheader("📈 Kesimpulan")
+#     st.write("""
+#     Dashboard analitik universitas ini menyediakan gambaran komprehensif tentang kinerja akademik mahasiswa. Melalui berbagai visualisasi, kita dapat mengidentifikasi pola penting dalam data mahasiswa, termasuk distribusi IPK, perbedaan kinerja antar fakultas, dan tren sepanjang waktu. Insight yang diperoleh dari data ini dapat digunakan untuk mendukung pengambilan keputusan strategis dalam meningkatkan kualitas pendidikan dan pengalaman mahasiswa.
+#     """)
+#     st.write("""
+#     Data menunjukkan bahwa secara keseluruhan kinerja akademik mahasiswa cukup baik, namun masih terdapat ruang untuk perbaikan, terutama dalam mendukung mahasiswa yang berisiko rendah dan memastikan distribusi sumber daya yang efektif di seluruh fakultas dan program studi.
+#     """)
 
 # Footer
 st.markdown("---")
