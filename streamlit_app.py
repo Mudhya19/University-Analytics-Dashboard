@@ -129,10 +129,10 @@ if selected_columns and len(selected_columns) == 1:
 
 # Display tabs
 tab1, tab2, tab3, tab4 = st.tabs([
-    "1. S.M.A.R.T Question & Data Wrangling",
+    # "1. S.M.A.R.T Question & Data Wrangling",
     "2. Ringkasan Statistik",
     "3. Dashboard Visualisasi",
-    "4. Insight & Kesimpulan"
+    # "4. Insight & Kesimpulan"
 ])
 
 # with tab1:
