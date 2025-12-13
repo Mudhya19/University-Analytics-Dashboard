@@ -154,7 +154,7 @@ else:
 # Tambahkan filter fakultas di sini
 st.sidebar.subheader("Filter Fakultas")
 # Mencari kolom yang mungkin berisi informasi fakultas/jurusan
-fakultas_prodi_cols = [col for col in df.columns if 'fakultas' in col.lower() or 'faculty' in col.lower() or 'prodi' in col.lower() or 'jurusan' in col.lower() or 'department' in col.lower()]
+fakultas_prodi_cols = [col for col in df.columns if any(keyword in col.lower() for keyword in ['fakultas', 'faculty', 'prodi', 'jurusan', 'department'])]
 selected_fakultas_col = None  # Inisialisasi variabel
 if fakultas_prodi_cols:
     selected_fakultas_col = fakultas_prodi_cols[0] # Gunakan kolom pertama yang ditemukan
